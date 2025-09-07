@@ -12,3 +12,7 @@ spring:
 
 server:
   port: 1924
+
+jwt:
+  secret: pZfhYe9EJ339HWJ6bHORpAhKyZ9n3FdnxJsH7bPXSNo=
+  expiration: 86400000
