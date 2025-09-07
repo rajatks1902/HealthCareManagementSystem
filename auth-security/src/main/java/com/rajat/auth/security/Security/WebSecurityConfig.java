@@ -102,13 +102,13 @@ public class WebSecurityConfig {
                     // Allow public access to auth endpoints
                     .requestMatchers("/api/test/**").permitAll()
                     // Allow public access to test endpoints
-//                    .anyRequest().permitAll());
-     .anyRequest().authenticated());
+                    .anyRequest().permitAll());
+//     .anyRequest().authenticated());
     // Require authentication for any other request
 
     http.authenticationProvider(authenticationProvider()); // Set the authentication provider
-    http.addFilterBefore(authenticationJwtTokenFilter(),
-            UsernamePasswordAuthenticationFilter.class);
+//    http.addFilterBefore(authenticationJwtTokenFilter(),
+//            UsernamePasswordAuthenticationFilter.class);
     // Commented out JWT token filter logic as JWT validation will be handled at API Gateway
     // Retain the code for future use if required
     /*

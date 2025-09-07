@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="51222e63-9efa-44f2-b4e8-3ba7f533a531" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/ApiGateway.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/config/CircuitBreakerConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/config/GatewayConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/config/JwtUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/config/RemoveDuplicateHeadersFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/config/RouterValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/controller/FallbackController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/exception/CustomExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/filter/AuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/logging/LoggingFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/src/test/java/com/rajat/api/gateway/ApiGatewayTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth-security/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth-security/src/main/java/com/rajat/auth/security/Resources/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../auth-security/src/main/java/com/rajat/auth/security/Resources/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth-security/src/main/java/com/rajat/auth/security/Security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../auth-security/src/main/java/com/rajat/auth/security/Security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth-security/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../auth-security/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth-security/src/test/java/com/rajat/auth/security/AuthSecurityApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../auth-security/src/test/java/com/rajat/auth/security/AuthSecurityApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Dao/DoctorBasicInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Dao/DoctorBasicInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Dao/DoctorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Dao/DoctorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/DoctorRepoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/DoctorRepoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Entity/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Entity/Doctor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Entity/DoctorBasicInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Entity/DoctorBasicInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Entity/DoctorDetailKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Entity/DoctorDetailKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Entity/DoctorRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Entity/DoctorRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Entity/DoctorStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Entity/DoctorStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Entity/GenericResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Entity/GenericResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Exception/InvalidDoctorStatusException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Exception/InvalidDoctorStatusException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Manager/DoctorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Manager/DoctorManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/java/com/rajat/doctorRepo/Resources/DoctorResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/java/com/rajat/doctorRepo/Resources/DoctorResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-info/src/test/java/com/rajat/doctorRepo/DoctorRepoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../doctor-info/src/test/java/com/rajat/doctorRepo/DoctorRepoApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;rajatks1902&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:rajatks1902/HealthCareManagementSystem.git&quot;,
+    &quot;accountId&quot;: &quot;5cc8d46d-499e-4e64-b77b-a3b6abad0b89&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="32Mq653uzfRE8nb1gxOwQ4gESB3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ApiGateway.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Remote JVM Debug.Unnamed.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/the_mindfull_maverick/HealthCareManagementSystem/api.gateway&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/rajat/api/gateway" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Remote JVM Debug.Unnamed">
+    <configuration name="ApiGateway" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.rajat.api.gateway.ApiGateway" />
+      <module name="api.gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.rajat.api.gateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="Remote" nameIsGenerated="true">
+      <module name="api.gateway" />
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <option name="AUTO_RESTART" value="false" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="5005" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
+    </configuration>
+    <configuration name="api-gateway/Dockerfile: Compose Deployment" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="../api-gateway/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.ApiGateway" />
+      <item itemvalue="Docker.api-gateway/Dockerfile: Compose Deployment" />
+      <item itemvalue="Remote JVM Debug.Unnamed" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.api-gateway/Dockerfile: Compose Deployment" />
+        <item itemvalue="Application.ApiGateway" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="51222e63-9efa-44f2-b4e8-3ba7f533a531" name="Changes" comment="" />
+      <created>1757240611224</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757240611224</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/config/GatewayConfig.java</url>
+          <line>68</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/config/GatewayConfig.java</url>
+          <line>69</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/config/JwtUtil.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/config/JwtUtil.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/config/JwtUtil.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/config/JwtUtil.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/filter/AuthenticationFilter.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../api-gateway/src/main/java/com/rajat/api/gateway/filter/AuthenticationFilter.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

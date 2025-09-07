@@ -2,17 +2,38 @@ spring:
   application:
     name: auth-security
   cassandra:
-    contact-points: cassandra
-    port: 9042
-    keyspace-name: security_info
-    local-datacenter: datacenter1
-    username: cassandra
-    password: cassandra
+    contact-points: ${SPRING_CASSANDRA_CONTACT_POINTS:127.0.0.1}
+    keyspace-name: ${SPRING_CASSANDRA_KEYSPACE_NAME:security_info}
+    local-datacenter: ${SPRING_CASSANDRA_LOCAL_DATACENTER:datacenter1}
+    username: ${SPRING_CASSANDRA_USERNAME:cassandra}
+    password: ${SPRING_CASSANDRA_PASSWORD:cassandra}
+  boot:
+    admin:
+      client:
+        enabled: true
+        instance:
+          name: Auth Service
+          service-url: http://auth-service:8080
+        url: http://admin-service:8080
+        auto-registration: true
 
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.servlet: DEBUG
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      enable:
+        include: health
 
 server:
-  port: 1924
+  port: 8080
 
 jwt:
-  secret: pZfhYe9EJ339HWJ6bHORpAhKyZ9n3FdnxJsH7bPXSNo=
+  secret: ${JWT_SECRET:uRfCVw3dynDxHboOukyMgdvrGlVeE8mo58w6IYqqn6AwdE7P}
   expiration: 86400000
