@@ -108,6 +108,24 @@ services:
             - SPRING_CASSANDRA_PASSWORD=cassandra
         restart: always
 
+    patient-info:
+        build:
+            context: ./patient-info
+        container_name: patient-info
+        networks:
+            - app-network
+        depends_on:
+            - cassandra
+            - api-gateway
+        environment:
+            - SPRING_CASSANDRA_CONTACT_POINTS=cassandra
+            - SPRING_CASSANDRA_PORT=9042
+            - SPRING_CASSANDRA_KEYSPACE_NAME=patient_info
+            - SPRING_CASSANDRA_LOCAL_DATACENTER=datacenter1
+            - SPRING_CASSANDRA_USERNAME=cassandra
+            - SPRING_CASSANDRA_PASSWORD=cassandra
+        restart: always
+
 networks:
     app-network:
         driver: bridge

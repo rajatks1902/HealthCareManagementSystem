@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: patient-info
+  cassandra:
+    contact-points: ${SPRING_CASSANDRA_CONTACT_POINTS:127.0.0.1}
+    keyspace-name: ${SPRING_CASSANDRA_KEYSPACE_NAME:patient_info}
+    local-datacenter: ${SPRING_CASSANDRA_LOCAL_DATACENTER:datacenter1}
+    username: ${SPRING_CASSANDRA_USERNAME:cassandra}
+    password: ${SPRING_CASSANDRA_PASSWORD:cassandra}
+
+server:
+  port: ${SERVER_PORT:8080}

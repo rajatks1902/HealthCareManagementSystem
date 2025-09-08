@@ -49,6 +49,23 @@ public class GatewayConfig {
                         )
                         .uri("http://doctor-info:8080")) // Correct base URI for doctor-service
 
+                .route("patient-info", r -> r.path("/api/v1/patient/**")
+                        .filters(f -> f
+                                .filter(filter)
+                                .circuitBreaker(c -> c.setName("doctorCircuitBreaker").setFallbackUri("forward:/fallback/doctor"))
+                                .filter(new RemoveDuplicateHeadersFilter()) // Optional: Remove duplicate headers
+                                .filter((exchange, chain) -> {
+                                    // Handle preflight OPTIONS requests
+                                    if (exchange.getRequest().getMethod() == HttpMethod.OPTIONS) {
+                                        exchange.getResponse().setStatusCode(HttpStatus.OK);
+                                        return exchange.getResponse().setComplete();
+                                    }
+                                    return chain.filter(exchange);
+                                })
+                        )
+                        .uri("http://patient-info:8080")) // Correct base URI for doctor-service
+
+
                 // Route configuration for appointment-service
                 .route("appointment-service", r -> r.path("/api/v1/appointments/**")
                         .filters(f -> f
