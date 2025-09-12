@@ -132,6 +132,26 @@ services:
             - KAFKA_TOPIC=appointments
         restart: always
 
+    notification-services:
+        build:
+            context: ./notification-services
+        container_name: notification-services
+        networks:
+            - app-network
+        depends_on:
+            - appointment-services
+            - kafka
+        environment:
+            - KAFKA_BOOTSTRAP_SERVER=kafka:9092
+            - KAFKA_GROUP_ID=appointment-notifications-group
+            - KAFKA_TOPIC=appointments
+            - MAIL_SERVER_HOST=smtp.gmail.com
+            - MAIL_SERVER_PORT=587
+            - MAIL_SERVER_USERNAME=noreplyrajat@gmail.com
+            - MAIL_SERVER_PASSWORD=password
+        restart: always
+
+
 networks:
     app-network:
         driver: bridge
