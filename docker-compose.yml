@@ -73,23 +73,6 @@ services:
         networks:
             - app-network
 
-#    admin-service:
-#        build:
-#            context: ./admin-service
-#        container_name: admin-service
-#        networks:
-#            - app-network
-#        depends_on:
-##            - appointment-service
-#            - auth-service
-##            - doctor-service
-#            - gateway-service
-##            - notification-service
-#            - patient-service
-#        ports:
-#            - "9093:8080"
-#        restart: always
-
     doctor-info:
         build:
             context: ./doctor-info
@@ -124,6 +107,29 @@ services:
             - SPRING_CASSANDRA_LOCAL_DATACENTER=datacenter1
             - SPRING_CASSANDRA_USERNAME=cassandra
             - SPRING_CASSANDRA_PASSWORD=cassandra
+        restart: always
+
+    appointment-services:
+        build:
+            context: ./appointment-services
+        container_name: appointment-services
+        networks:
+            - app-network
+        depends_on:
+            - cassandra
+            - api-gateway
+            - doctor-info
+            - patient-info
+            - kafka
+        environment:
+            - SPRING_CASSANDRA_CONTACT_POINTS=cassandra
+            - SPRING_CASSANDRA_PORT=9042
+            - SPRING_CASSANDRA_KEYSPACE_NAME=appointment_info
+            - SPRING_CASSANDRA_LOCAL_DATACENTER=datacenter1
+            - SPRING_CASSANDRA_USERNAME=cassandra
+            - SPRING_CASSANDRA_PASSWORD=cassandra
+            - KAFKA_BOOTSTRAP_SERVER=kafka:9092
+            - KAFKA_TOPIC=appointments
         restart: always
 
 networks:

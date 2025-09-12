@@ -67,8 +67,9 @@ public class GatewayConfig {
 
 
                 // Route configuration for appointment-service
-                .route("appointment-service", r -> r.path("/api/v1/appointments/**")
+                .route("appointment-services", r -> r.path("/api/v1/appointments/**")
                         .filters(f -> f
+                                .filter(filter)
                                 .circuitBreaker(c -> c.setName("appointmentServiceCircuitBreaker").setFallbackUri("forward:/fallback/appointment"))
                                 .filter(new RemoveDuplicateHeadersFilter()) // Optional: Remove duplicate headers
                                 .filter((exchange, chain) -> {
@@ -80,7 +81,7 @@ public class GatewayConfig {
                                     return chain.filter(exchange);
                                 })
                         )
-                        .uri("http://appointment-service:8080")) // Correct base URI for appointment-service
+                        .uri("http://appointment-services:8080")) // Correct base URI for appointment-service
 
                 // Route configuration for auth-service
                 .route("auth-security", r -> r.path("/api/auth/**")
