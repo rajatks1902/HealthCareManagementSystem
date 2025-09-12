@@ -1,0 +1,30 @@
+spring:
+    application:
+        name: appointment-services
+
+    cassandra:
+        contact-points: ${SPRING_CASSANDRA_CONTACT_POINTS:127.0.0.1}
+        keyspace-name: ${SPRING_CASSANDRA_KEYSPACE_NAME:appointment_info}
+        local-datacenter: ${SPRING_CASSANDRA_LOCAL_DATACENTER:datacenter1}
+        username: ${SPRING_CASSANDRA_USERNAME:cassandra}
+        password: ${SPRING_CASSANDRA_PASSWORD:cassandra}
+
+    kafka:
+        producer:
+            bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:kafka:9092}
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+        topic:
+            name: ${KAFKA_TOPIC:kafka:9092}
+
+server:
+    port: ${APPOINTMENT_SERVICE_PORT:1818}
+
+doctor:
+    service:
+        url: http://doctor-service:8080/api/v1/doctor
+
+patient:
+    service:
+        url: http://patient-service:8080/api/v1/patient
