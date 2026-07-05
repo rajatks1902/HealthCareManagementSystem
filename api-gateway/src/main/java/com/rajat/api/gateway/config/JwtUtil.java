@@ -1,19 +1,23 @@
 package com.rajat.api.gateway.config;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 
 @Component // Marks this class as a Spring-managed component for JWT operations
 public class JwtUtil {
+
+    private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
 
     @Value("${jwt.secret}") // Injects the JWT secret key from application configuration
     private String jwtSecret;
@@ -50,6 +54,9 @@ public class JwtUtil {
     }
 
     private String parseJwt(String token) {
+        if (token == null || !token.startsWith("Bearer ")) {
+            throw new JwtException("Authorization header must use the Bearer scheme");
+        }
         return token.substring(7);
 
     }
@@ -71,6 +78,11 @@ public class JwtUtil {
      * @return true if the token is invalid, false otherwise.
      */
     public boolean isInvalid(String token) {
-        return isTokenExpired(token);
+        try {
+            return isTokenExpired(token);
+        } catch (JwtException | IllegalArgumentException ex) {
+            logger.warn("Rejecting invalid JWT: {}", ex.getMessage());
+            return true;
+        }
     }
 }

@@ -1,7 +1,8 @@
 package com.rajat.notification.services.service;
 
 import com.rajat.notification.services.model.Appointment;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -9,9 +10,12 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @Service
 public class EmailService {
+
+    private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
 
     private static final String APPOINTMENT_PENDING_SUBJECT = "Appointment Pending Approval";
     private static final String APPOINTMENT_CONFIRMED_SUBJECT = "Appointment Confirmed";
@@ -30,8 +34,11 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String FROM_ADDRESS;
 
-    @Autowired
-    private JavaMailSender emailSender;
+    private final JavaMailSender emailSender;
+
+    public EmailService(JavaMailSender emailSender) {
+        this.emailSender = emailSender;
+    }
 
     private void sendSimpleMessage(String to, String subject, String text) {
         try {
@@ -43,7 +50,7 @@ public class EmailService {
 
             emailSender.send(message);
         } catch (MailException exception) {
-            exception.printStackTrace();
+            logger.error("Failed to send appointment notification email to {}", to, exception);
         }
     }
 
@@ -51,8 +58,8 @@ public class EmailService {
         String to, subject, text;
         String doctor = appointment.getDoctor().getFirstName() + " " + appointment.getDoctor().getLastName();
         String patient = appointment.getPatient().getFirstName() + " " + appointment.getPatient().getLastName();
-        String appointmentNotes = appointment.getNotes().isEmpty() ? "N/A" : appointment.getNotes();
-        String doctorComments = appointment.getDoctorComments().isEmpty() ? "N/A" : appointment.getDoctorComments();
+        String appointmentNotes = defaultText(appointment.getNotes());
+        String doctorComments = defaultText(appointment.getDoctorComments());
 
         switch (appointment.getStatus()) {
             case PENDING:
@@ -115,5 +122,11 @@ public class EmailService {
         }
 
         sendSimpleMessage(to, subject, text);
+    }
+
+    private String defaultText(String value) {
+        return Optional.ofNullable(value)
+                .filter(text -> !text.isBlank())
+                .orElse("N/A");
     }
 }

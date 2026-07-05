@@ -2,15 +2,19 @@ package com.rajat.appointment.services.Resources;
 
 import com.rajat.appointment.services.model.Appointment;
 import com.rajat.appointment.services.payload.request.AppointmentRequest;
+import com.rajat.appointment.services.payload.response.AppointmentStatsResponse;
 import com.rajat.appointment.services.service.AppointmentService;
+import com.rajat.appointment.services.service.AppointmentStatsService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/appointments")
@@ -18,8 +22,14 @@ public class AppointmentResources {
 
     private static final Logger logger = LoggerFactory.getLogger(AppointmentResources.class);
 
-    @Autowired
-    private AppointmentService appointmentService;
+    private final AppointmentService appointmentService;
+    private final AppointmentStatsService appointmentStatsService;
+
+    public AppointmentResources(AppointmentService appointmentService,
+                                AppointmentStatsService appointmentStatsService) {
+        this.appointmentService = appointmentService;
+        this.appointmentStatsService = appointmentStatsService;
+    }
 
     /**
      * Books a new appointment.
@@ -112,6 +122,35 @@ public class AppointmentResources {
         } catch (Exception e) {
             logger.error("Error updating appointment: {}", e.getMessage(), e);
             return ResponseEntity.internalServerError().body("Unable to update appointment.");
+        }
+    }
+
+    @GetMapping("/stats")
+    public ResponseEntity<?> getAppointmentStats(
+            @RequestParam(defaultValue = "DAY") String period,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
+            @RequestParam(required = false) UUID doctorId,
+            @RequestParam(defaultValue = "false") boolean refresh) {
+        try {
+            List<AppointmentStatsResponse> stats = appointmentStatsService.getStats(period, from, to, doctorId, refresh);
+            return ResponseEntity.ok(stats);
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        } catch (Exception ex) {
+            logger.error("Error fetching appointment stats", ex);
+            return ResponseEntity.internalServerError().body("Unable to fetch appointment stats.");
+        }
+    }
+
+    @PostMapping("/stats/rebuild")
+    public ResponseEntity<String> rebuildAppointmentStats() {
+        try {
+            appointmentStatsService.rebuildStats();
+            return ResponseEntity.ok("Appointment statistics rebuilt successfully.");
+        } catch (Exception ex) {
+            logger.error("Error rebuilding appointment stats", ex);
+            return ResponseEntity.internalServerError().body("Unable to rebuild appointment stats.");
         }
     }
 }

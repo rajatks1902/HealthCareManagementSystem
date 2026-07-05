@@ -2,6 +2,9 @@ package com.rajat.api.gateway.filter;
 
 import com.rajat.api.gateway.config.JwtUtil;
 import com.rajat.api.gateway.config.RouterValidator;
+import io.jsonwebtoken.Claims;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -16,6 +19,8 @@ import reactor.core.publisher.Mono;
 @RefreshScope // Allows dynamic reloading of properties for this component
 @Component // Marks this filter as a Spring-managed component
 public class AuthenticationFilter implements GatewayFilter {
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
 
     private final RouterValidator routerValidator;
     private final JwtUtil jwtUtil;
@@ -37,7 +42,6 @@ public class AuthenticationFilter implements GatewayFilter {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
-        System.out.println(request);
         // Check if the request path requires authentication
         if (routerValidator.isSecured.test(request)) {
             if (isAuthMissing(request)) {
@@ -50,10 +54,10 @@ public class AuthenticationFilter implements GatewayFilter {
                 return onError(exchange, HttpStatus.FORBIDDEN, "Invalid or expired token.");
             }
 
-            updateRequest(exchange, token);
+            exchange = addClaimsToRequest(exchange, token);
         }
 
-        System.out.println("forwarding the request");
+        logger.debug("Forwarding {} {}", request.getMethod(), request.getURI().getPath());
         return chain.filter(exchange); // Forward the request if valid
     }
 
@@ -94,16 +98,21 @@ public class AuthenticationFilter implements GatewayFilter {
         return !request.getHeaders().containsKey("Authorization");
     }
 
-    /**
-     * Updates the request with additional headers extracted from the token.
-     *
-     * @param exchange the current server exchange.
-     * @param token    the JWT token.
-     */
-    private void updateRequest(ServerWebExchange exchange, String token) {
-        String email = jwtUtil.getAllClaimsFromToken(token).get("email", String.class);
-        exchange.getRequest().mutate()
-                .header("email", email) // Add the email claim to the request headers
-                .build();
+    private ServerWebExchange addClaimsToRequest(ServerWebExchange exchange, String token) {
+        Claims claims = jwtUtil.getAllClaimsFromToken(token);
+        ServerHttpRequest.Builder requestBuilder = exchange.getRequest().mutate()
+                .header("username", claims.getSubject());
+
+        String email = claims.get("email", String.class);
+        if (email != null && !email.isBlank()) {
+            requestBuilder.header("email", email);
+        }
+
+        String role = claims.get("role", String.class);
+        if (role != null && !role.isBlank()) {
+            requestBuilder.header("role", role);
+        }
+
+        return exchange.mutate().request(requestBuilder.build()).build();
     }
 }

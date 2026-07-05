@@ -10,4 +10,8 @@ spring:
 
 server:
   port: ${SERVER_PORT:8080}
-#/Users/the_mindfull_maverick/HealthCareManagementSystem/doctorRepo/src/main/java/com/rajat/doctorRepo/DoctorRepoApplication.java
+
+logging:
+  level:
+    root: INFO
+    com.rajat.doctorRepo: DEBUG

@@ -8,6 +8,7 @@ spring:
         local-datacenter: ${SPRING_CASSANDRA_LOCAL_DATACENTER:datacenter1}
         username: ${SPRING_CASSANDRA_USERNAME:cassandra}
         password: ${SPRING_CASSANDRA_PASSWORD:cassandra}
+        schema-action: ${SPRING_CASSANDRA_SCHEMA_ACTION:CREATE_IF_NOT_EXISTS}
 
     kafka:
         producer:
@@ -16,7 +17,12 @@ spring:
             value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
         topic:
-            name: ${KAFKA_TOPIC:kafka:9092}
+            name: ${KAFKA_TOPIC:appointments}
+
+logging:
+    level:
+        root: INFO
+        com.rajat.appointment.services: DEBUG
 
 server:
     port: ${APPOINTMENT_SERVICE_PORT:1818}
@@ -28,3 +34,8 @@ doctor:
 patient:
     service:
         url: http://patient-service:8080/api/v1/patient
+
+stats:
+    scheduler:
+        # Rebuild appointment statistics every day at 1 AM.
+        cron: ${APPOINTMENT_STATS_CRON:0 0 1 * * *}

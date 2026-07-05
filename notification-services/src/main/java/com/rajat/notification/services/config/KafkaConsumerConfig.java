@@ -24,13 +24,14 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig {
 
-	// Kafka broker address
-	@Value("${spring.kafka.consumer.bootstrap-servers}")
-	private String kafkaAddress;
+	private final String kafkaAddress;
+	private final String groupId;
 
-	// Consumer group ID for Kafka
-	@Value("${spring.kafka.consumer.group-id}")
-	private String groupId;
+	public KafkaConsumerConfig(@Value("${spring.kafka.consumer.bootstrap-servers}") String kafkaAddress,
+							   @Value("${spring.kafka.consumer.group-id}") String groupId) {
+		this.kafkaAddress = kafkaAddress;
+		this.groupId = groupId;
+	}
 
 	/**
 	 * Creates a Kafka ConsumerFactory with configurations for the consumer.

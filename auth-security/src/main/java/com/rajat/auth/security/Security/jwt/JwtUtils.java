@@ -11,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 
@@ -46,11 +45,12 @@ public class JwtUtils {
             .findFirst() // Get the first (and only) role
             .orElseThrow(() -> new RuntimeException("Role not found for the user"));
 
-    System.out.println("Role of user is: "+role);
+    logger.debug("Generating JWT for user {} with role {}", userPrincipal.getUsername(), role);
 
     // Build and return the JWT token
     return Jwts.builder()
             .setSubject((userPrincipal.getUsername())) // Set the subject (username)
+            .claim("email", userPrincipal.getEmail())
             .claim("role", role)
             .setIssuedAt(new Date()) // Set the issue date
             .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)) // Set the expiration date

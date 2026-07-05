@@ -7,9 +7,8 @@ import com.rajat.notification.services.model.Appointment;
 import com.rajat.notification.services.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,9 +23,14 @@ public class KafkaConsumerListener {
 	// ObjectMapper for JSON serialization and deserialization
 	private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
-	// Service for triggering email notifications
-	@Autowired
-	private EmailService emailService;
+	private final EmailService emailService;
+	private final String topicName;
+
+	public KafkaConsumerListener(EmailService emailService,
+								 @Value("${spring.kafka.topic.name}") String topicName) {
+		this.emailService = emailService;
+		this.topicName = topicName;
+	}
 
 	/**
 	 * Kafka listener method to process messages from the specified topic and partition.
@@ -37,7 +41,7 @@ public class KafkaConsumerListener {
 	public void listen(String message) {
 		try {
 
-			logger.info("Listening on topic: {}", "${spring.kafka.listener.topic}");
+			logger.info("Received appointment notification event from topic: {}", topicName);
 
 			// Deserialize the JSON message into an Appointment object
 			Appointment appointment = objectMapper.readValue(message, Appointment.class);
