@@ -88,24 +88,24 @@ public class AuthManager {
         if (strRoles == null) {
             Role userRole = roleRepository.findById(String.valueOf(UserRole.ROLE_PATIENT))
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole.toString());
+            roles.add(userRole.getName().name());
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
                         Role adminRole = roleRepository.findById(String.valueOf(UserRole.ROLE_ADMIN))
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole.toString());
+                        roles.add(adminRole.getName().name());
                         break;
                     case "doctor":
                         Role doctorRole = roleRepository.findById(String.valueOf(UserRole.ROLE_DOCTOR))
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(doctorRole.toString());
+                        roles.add(doctorRole.getName().name());
                         break;
                     default:
                         Role userRole = roleRepository.findById(String.valueOf(UserRole.ROLE_PATIENT))
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole.toString());
+                        roles.add(userRole.getName().name());
                 }
             });
         }
